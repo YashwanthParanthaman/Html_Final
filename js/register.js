@@ -1,3 +1,6 @@
+// Name: Yashwanth Paranthaman
+// Student Id: 101282474
+
 var userList = [];
 //localStorage.clear();
 if ("userList" in localStorage){
@@ -35,7 +38,7 @@ function validateUser(){
       userList.push(newUser);
       console.log(userList);
       localStorage.setItem("userList", JSON.stringify(userList));
-      
+
   }
 }
 
