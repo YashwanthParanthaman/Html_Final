@@ -2,6 +2,7 @@
 // Student Id: 101282474
 
 var userList = [];
+var errors = false;
 //localStorage.clear();
 if ("userList" in localStorage){
   userList = JSON.parse(localStorage.getItem("userList"));
@@ -18,6 +19,31 @@ function user(name, password,email, phone, address){
     this.address = address;
 };
 
+function validateEmail(){
+  let email = document.forms["userinfo"]["email"].value;
+  for(var i = 0; i < userList.length; i++){
+    if(email == userList[i].email){
+      document.getElementById("error").innerHTML = "User already exists.";
+      errors = true;
+    }
+  }
+  if(!errors){
+    document.getElementById("error").innerHTML = "";
+  }
+}
+
+function validatePassword(){
+  let password = document.forms["userinfo"]["password"].value;
+  let confirmPassword = document.forms["userinfo"]["confirmPassword"].value;
+  if(password != confirmPassword){
+    document.getElementById("error").innerHTML = "Password mismatch";
+    errors = true;
+  }
+  else{
+    document.getElementById("error").innerHTML = "";
+  }
+}
+
 
 function validateUser(){
   //e.preventDefault();
@@ -29,8 +55,8 @@ function validateUser(){
   let phone = document.forms["userinfo"]["phone"].value;
   let address = document.forms["userinfo"]["address"].value;
 
-  if(password != confirmPassword){
-    console.log("Password Mismatch");
+  if(errors){
+    document.getElementById("error").innerHTML = "Unable to create user. Check inputs";
     return false;
   }
   else{
@@ -54,6 +80,9 @@ function loginUser(){
       userFound = true;
       localStorage.setItem("username",username);
     }
+  }
+  if(!userFound){
+  document.getElementById("output").hidden = false;
   }
   console.log(userFound);
   return userFound;

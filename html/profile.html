@@ -25,7 +25,7 @@ Student Id: 101282474 -->
             <li><a href="menu.html">Menu List</a></li>
             <li><a href="profile.html">Profile</a></li>
             <li><a href="login.html">Logout</a></li>
-            <li><a href="cart.html"><span class="new badge red" data-badge-caption="Cart" id="favCount">0</span></a></li>
+            <li><a href="cart.html"><span class="new badge red" data-badge-caption="Cart" id="favCount"></span></a></li>
           </ul>
         </div>
       </nav>
@@ -43,7 +43,7 @@ Student Id: 101282474 -->
 
                   <div class="form-label-group">
                     <label for="name">Email : </label>
-                    <input type="email" name="email" id = "email" class="form-control" required placeholder="Email Address">
+                    <input type="email" name="email" id = "email" class="form-control" required placeholder="Email Address" onchange="validateEmail()">
                   </div>
 
                   <div class="form-label-group">
@@ -58,7 +58,7 @@ Student Id: 101282474 -->
 
                   <br>
 
-                  <button type="button" name="button" class="btn btn-lg btn-primary btn-block text-uppercase" onclick="changePassword()">Change Password</button>
+                  <button type="button" name="button" class="btn btn-lg btn-primary btn-block text-uppercase" style="text-align: center; line-height: 5px;" onclick="changePassword()">Change Password</button>
 
                   <div class="form-label-group">
                     <label for="Password">Password : </label>
@@ -67,13 +67,16 @@ Student Id: 101282474 -->
 
                   <div class="form-label-group">
                     <label for="Password">Confirm Password : </label>
-                    <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" required disabled>
+                    <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password" onchange="validatePassword()" required disabled>
                   </div>
-                  <button class="btn btn-lg btn-primary btn-block" type="submit">Update Profile</button>
+                  <button class="btn btn-lg btn-primary btn-block " style="text-align: center; line-height: 5px;" type="submit">Update Profile</button>
                   <br>
-                  <button type="button" name="button" class="btn btn-lg btn-primary btn-block" onclick="deleteProfile()">Delete Profile</button>
+                  <button type="button" name="button" class="btn btn-lg btn-primary btn-block" style="text-align: center; line-height: 5px;" onclick="deleteProfile()">Delete Profile</button>
                   <br>
                 </form>
+                <div class="form-label-group" id="output">
+                  <p id="error"></p>
+                </div>
               </div>
             </div>
           </div>

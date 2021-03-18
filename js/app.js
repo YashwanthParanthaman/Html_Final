@@ -5,7 +5,7 @@ var email = localStorage.getItem("username");
 var name = "";
 var phone = "";
 var address = "";
-
+var errors = false;
 userList = JSON.parse(localStorage.getItem("userList"));
 
 function user(name, password,email, phone, address){
@@ -15,6 +15,31 @@ function user(name, password,email, phone, address){
     this.phone = phone;
     this.address = address;
 };
+
+function validateEmail(){
+  let inputEmail = document.forms["updateProfile"]["email"].value;
+  for(var i = 0; i < userList.length; i++){
+    if(inputEmail == userList[i].email){
+      document.getElementById("error").innerHTML = "User already exists.";
+      errors = true;
+    }
+  }
+  if(!errors){
+    document.getElementById("error").innerHTML = "";
+  }
+}
+
+function validatePassword(){
+  let password = document.forms["updateProfile"]["password"].value;
+  let confirmPassword = document.forms["updateProfile"]["confirmPassword"].value;
+  if(password != confirmPassword){
+    document.getElementById("error").innerHTML = "Password mismatch";
+    errors = true;
+  }
+  else{
+    document.getElementById("error").innerHTML = "";
+  }
+}
 
 for(var i=0; i < userList.length; i++){
   if(email == userList[i].email){
